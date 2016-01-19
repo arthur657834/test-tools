@@ -1,0 +1,63 @@
+badboy录制脚本
+
+${__BeanShell(props.get("START.HMS"))}
+
+文件读取：
+	1.${__CSVRead(path,column)}
+	2.CSV Data Set Config
+
+集合点:
+	Synchronizing Timer
+	
+jdbc测试:
+	将jdbc包放到lib目录下
+	也可以参数化 select ? from dual
+
+分布式部署：
+	修改jmeter.properties 
+	remote_hosts=127.0.0.1=》remote_hosts=192.168.9.99:1099,192.168.9.130:1099 
+	运行jmeter-server.bat
+
+json数据处理：
+	正则："website":"(.+?)"
+		name = "(.+?)" value = "(.+?)"  
+		引用名称：MYREF
+		模板：$1$$2$
+		如下变量的值将会被设定：
+		MYREF_g0:name = "file"value = "readme.txt"
+		MYREF_g1:file
+		MYREF_g2:readme.txt
+		引用${MYREF_g1}
+	
+	jsonpath：$.perforList[*].website  =》多数值匹配 ${ljtest_1}  ${ljtest_matchNr}json长度
+	http://goessner.net/articles/JsonPath/index.html#e2	
+	
+	Beanshell：
+		import com.eclipsesource.json.*
+		
+		String jsonString =prev.getResponseDataAsString();
+		JsonObject family = JsonObject.readFrom(jsonString);
+		JsonArray members =family.get("members").asArray();
+		String firstName =members.get(2).asObject().get("firstName").asString();
+		vars.put("firstName_BSH",firstName);
+
+添加：
+	用户自定义变量: test(value:123),us
+	BeanShellSample: 
+		参数:${test}
+		script:
+			String x=${test}+"";
+			vars.put("us",x);
+使用:${us}
+
+Logic Controller:
+	If Controller:
+		如果是字符串一点要在参数前加引号，如：a."${foreach_city}"=="beijing"　b."${foreach_city}"!="beijing"
+	
+
+	
+
+	
+	
+	
+	
