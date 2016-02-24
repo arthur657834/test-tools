@@ -1,3 +1,7 @@
+http://jmeter-plugins.org/downloads/all/
+jmeter 插件下载
+解压之后的jar放到\lib\ext下
+
 badboy录制脚本
 
 ${__BeanShell(props.get("START.HMS"))}
