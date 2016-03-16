@@ -1,6 +1,6 @@
 svn:
 yum -y install subversion
-mkdir svn
+mkdir /svn
 svnadmin create svn/project
 
 # ls /svn/project/   
@@ -14,7 +14,9 @@ format文件：是一个文本文件，里面只放了一个整数，表示当�
 
 conf目录：是这个仓库的配置文件（仓库的用户访问账号、权限等）
 
-# vi /svn/project/conf/svnserve.conf   
+cd svn
+
+# vi ./project/conf/svnserve.conf   
 [general]   
 anon-access = none   
 auth-access = write   
@@ -22,13 +24,13 @@ password-db = /svn/project/conf/passwd
 authz-db = /svn/project/conf/authz   
 realm = My Test Repository #这是个提示信息  
 
-# vi /svn/project/conf/passwd   
+# vi ./project/conf/passwd   
 [users]   
 xiaoran.shen = 123456   
 test1 = 123456   
 test2 = 123456 
 
-# vi /svn/project/conf/authz   
+# vi ./project/conf/authz   
 [groups]   
 admin = xiaoran.shen,test1   
 user = test2   
@@ -39,13 +41,21 @@ user = test2
 
 *=表示除了上面设置的权限用户组以外，其他所有用户都设置空权限，空权限表示禁止访问本目录，这很重要一定要加上。
 
-svnserve -d -r /svn/project/
+svnserve -d -r ./project/
 svn co svn://192.168.11.229  
+
+svn 更新代码之后立即触发jenkins构建
+在代码仓库目录下的hook配置post-commit，调用jenkins构建api即可 //post-commit 其实就是shell脚本
 
 jenkins:
 http://ftp.tsukuba.wide.ad.jp/software/jenkins/war/1.651/jenkins.war
 将war包放入tomcat的webapps,启动tomcat
 在系统设置中配置maven,ant
+
+jenkins mail configure:
+tips:
+系统管理员邮件地址 要跟 邮件通知的 用户名一致，否则发送不成功
+http://hudson-ci.org/PluginCentral/site/3.2/
 
 在jenkins中配置maven构建
 
