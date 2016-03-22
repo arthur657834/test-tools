@@ -1,7 +1,7 @@
 svn:
 yum -y install subversion
 mkdir /svn
-svnadmin create svn/project
+svnadmin create /svn/project
 
 # ls /svn/project/   
 conf db format hooks locks README.txt  
@@ -14,7 +14,7 @@ format文件：是一个文本文件，里面只放了一个整数，表示当�
 
 conf目录：是这个仓库的配置文件（仓库的用户访问账号、权限等）
 
-cd svn
+cd /svn
 
 # vi ./project/conf/svnserve.conf   
 [general]   
@@ -33,7 +33,7 @@ test2 = 123456
 # vi ./project/conf/authz   
 [groups]   
 admin = xiaoran.shen,test1   
-user = test2   
+user = test1   
 [/]   
 @admin = rw   
 @user = r   
