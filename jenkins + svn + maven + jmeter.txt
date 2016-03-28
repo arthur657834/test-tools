@@ -55,6 +55,7 @@ http://ftp.tsukuba.wide.ad.jp/software/jenkins/war/1.651/jenkins.war
 jenkins mail configure:
 tips:
 系统管理员邮件地址 要跟 邮件通知的 用户名一致，否则发送不成功
+jenkins可选插件为空:在插件高级中更新一下
 http://hudson-ci.org/PluginCentral/site/3.2/
 
 在jenkins中配置maven构建
