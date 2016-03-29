@@ -1,5 +1,24 @@
 http://tonl.iteye.com/blog/1948869
 
+对Eclipse的工程写单元测试：
+第一步：
+1. 一个工程有多个测试类，将测试类放到一个测试包utpkg下。
+2. 每一个测试类写好，都单独执行run as ->JUnit Test测一下。
+ 
+第二步：
+1. 所有的测试类写好后，对工程右键->export->General->Ant Buildfiles=>next->选中工程名，默认的选项：name for and buildfile：build.xml；JUnit output directory：JUnit（不用手动创建，执行build.xml时会自动生成）.=>finish.
+2. 在工程下会生成一个build.xml的蚂蚁图标的文件。
+ 
+第三步：
+1. 右击build.xml文件，->run as->3 ant build...
+2. 在Targets栏下选择要执行的targets. build[default]是默认的。其他可以自己根据需要，选择待执行的测试类。
+  注意：这些是有顺序的，可以自行调整顺序。
+3. 选好之后，Run.
+ 
+第四步：
+查看Run结束的结果。
+1. 在工程下会生成一个junit的文件夹，下面有一系列的文件。
+
 @Test：
 表明该方法是一个测试方法
  
