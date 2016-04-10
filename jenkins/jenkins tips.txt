@@ -1,0 +1,3 @@
+1.
+使用slave时可能会导致一些命令找不到
+注意可能在linux slave上使用了bashrc而非profile导致的
