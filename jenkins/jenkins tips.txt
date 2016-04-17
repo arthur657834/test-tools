@@ -1,3 +1,9 @@
 1.
 使用slave时可能会导致一些命令找不到
 注意可能在linux slave上使用了bashrc而非profile导致的
+
+2.重启jenkins
+访问 http://xxxxxxxx:8080/restart 
+
+3.插件列表
+https://wiki.jenkins-ci.org/display/JENKINS/Plugins

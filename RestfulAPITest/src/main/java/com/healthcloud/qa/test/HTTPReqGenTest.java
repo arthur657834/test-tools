@@ -15,10 +15,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONException;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import org.skyscreamer.jsonassert.JSONCompare;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.skyscreamer.jsonassert.JSONCompareResult;
@@ -30,6 +38,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.healthcloud.qa.utils.DB;
 import com.healthcloud.qa.utils.DataReader;
 import com.healthcloud.qa.utils.DataWriter;
 import com.healthcloud.qa.utils.HTTPReqGen;
@@ -37,6 +47,9 @@ import com.healthcloud.qa.utils.RecordHandler;
 import com.healthcloud.qa.utils.SheetUtils;
 import com.healthcloud.qa.utils.StringUtil;
 import com.jayway.restassured.response.Response;
+
+import com.healthcloud.qa.utils.Property;
+import com.healthcloud.qa.utils.Propertyfromyaml;
 
 public class HTTPReqGenTest implements ITest {
 
@@ -59,6 +72,7 @@ public class HTTPReqGenTest implements ITest {
 	XSSFSheet outputSheet = null;
 	XSSFSheet comparsionSheet = null;
 	XSSFSheet resultSheet = null;
+	XSSFSheet loginSheet = null;
 
 	private double totalcase = 0;
 	private double failedcase = 0;
@@ -70,6 +84,16 @@ public class HTTPReqGenTest implements ITest {
 	@Parameters("workBook")
 	public void setup(String path) {
 		filePath = path;
+		// System.out.println(userDir + File.separator);
+		// System.out.println(userDir + File.separator + filePath);
+		File file = new File(filePath);
+		if (file.renameTo(file)) {
+			System.out.println("文件未被操作");
+		} else {
+			System.out.println("文件正在被操作");
+			JOptionPane.showMessageDialog(null, filePath + "文件正在被操作", "alert", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 
 		try {
 			wb = new XSSFWorkbook(new FileInputStream(filePath));
@@ -80,6 +104,7 @@ public class HTTPReqGenTest implements ITest {
 		}
 		inputSheet = wb.getSheet("Input");
 		baselineSheet = wb.getSheet("Baseline");
+		loginSheet = wb.getSheet("Login");
 
 		SheetUtils.removeSheetByName(wb, "Output");
 		SheetUtils.removeSheetByName(wb, "Comparison");
@@ -120,6 +145,10 @@ public class HTTPReqGenTest implements ITest {
 		for (Map.Entry<String, RecordHandler> entry : sortmap.entrySet()) {
 			String test_ID = entry.getKey();
 			String test_case = entry.getValue().get("TestCase");
+			System.out.println("test_ID:" + test_ID);
+			System.out.println("test_case:" + test_case);
+			System.out.println("call_suff:" + entry.getValue().get("call_suff"));
+
 			if (!test_ID.equals("") && !test_case.equals("")) {
 				test_IDs.add(new Object[] { test_ID, test_case });
 			}
@@ -132,7 +161,7 @@ public class HTTPReqGenTest implements ITest {
 	}
 
 	@Test(dataProvider = "WorkBookData", description = "ReqGenTest")
-	public void api_test(String ID, String test_case) {
+	public void api_test(String ID, String test_case) throws Exception {
 
 		HTTPReqGen myReqGen = new HTTPReqGen();
 
@@ -144,35 +173,147 @@ public class HTTPReqGenTest implements ITest {
 		}
 
 		String baseline_message = myBaselineData.get_record(ID).get("Response");
+		// System.out.println("baseline_message:" + baseline_message);
+		if (filePath.contains("Login")) {
+			JSONObject loginjsonObject = JSONObject.parseObject(baseline_message);
+			System.out.println(loginjsonObject);
+		}
 
+		try {
+			JSONObject jsonObject = JSONObject.parseObject(baseline_message);
+			// yes, it is
+		} catch (Exception e) {
+			// no, it isnt
+			Property readcnf = new Property();
+			// System.out.println(readcnf.Property());
+
+			// String passwd = (String) Property.Property().get("passwd");
+			// String user = (String) Property.Property().get("user");
+			// String port = (String) Property.Property().get("port");
+			// String DB = (String) Property.Property().get("DB");
+			// String DBtype = (String) Property.Property().get("DBtype");
+			// String IP = (String) Property.Property().get("IP");
+			// String SqlCharacter = (String)
+			// Property.Property().get("SqlCharacter");
+			// String UrlSplit = (String) Property.Property().get("UrlSplit");
+			// System.out.println("SqlCharacter:" + SqlCharacter);
+
+			String DBtype = null;
+			if ((baseline_message.split(":")[0].contains("mysql".toLowerCase()))
+					| (baseline_message.split(":")[0].contains("mysql".toUpperCase()))) {
+				baseline_message = baseline_message.substring(baseline_message.indexOf(":") + 1);
+				DBtype = "mysql";
+
+			} else if ((baseline_message.split(":")[0].contains("cassandra".toLowerCase()))
+					| (baseline_message.split(":")[0].contains("cassandra".toUpperCase()))) {
+				baseline_message = baseline_message.substring(baseline_message.indexOf(":") + 1);
+				DBtype = "cassandra";
+			} else if (0 == baseline_message.indexOf("{")) {
+				baseline_message = baseline_message;
+			} else {
+				System.out.println("DBtype未定义");
+				JOptionPane.showMessageDialog(null, filePath + " DBtype未定义", "alert", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
+			}
+
+			JSONObject propertyfromyaml = Propertyfromyaml.Propertyfromyaml(DBtype);
+			String passwd = (String) propertyfromyaml.get("passwd");
+			String user = (String) propertyfromyaml.get("user");
+			String port = (String) propertyfromyaml.get("port");
+			String DB = (String) propertyfromyaml.get("DB");
+			// String DBtype = (String)
+			// Propertyfromyaml.Propertyfromyaml().get("DBtype");
+			String IP = (String) propertyfromyaml.get("IP");
+			String SqlCharacter = (String) propertyfromyaml.get("SqlCharacter");
+			String UrlSplit = (String) propertyfromyaml.get("UrlSplit");
+			System.out.println("SqlCharacter:" + SqlCharacter);
+
+			if (Pattern.compile(SqlCharacter.toLowerCase() + "|" + SqlCharacter.toUpperCase()).matcher(baseline_message)
+					.find()) {
+				DB getbaselinefrommysql = new DB();
+				baseline_message = getbaselinefrommysql.GetResult(DBtype, IP, port, DB, user, passwd, baseline_message)
+						.toString();
+			}
+		}
+		System.out.println("baseline_message:" + baseline_message);
 		if (response.statusCode() == 200)
 			try {
 				DataWriter.writeData(outputSheet, response.asString(), ID, test_case);
 				// System.out.println(outputSheet.getSheetName() +
 				// "\t\t"+response.asString() + "\t\t" + ID+"\t\t"+test_case);
+				// System.out.println("response:" + response.asString());
+				if (Pattern.compile("^\\[").matcher(response.asString()).find()) {
+					// System.out.println("find--------------------------------1");
 
-				JSONCompareResult result = JSONCompare.compareJSON(StringUtil.removeSpaces(baseline_message),
-						StringUtil.removeSpaces(response.asString()), JSONCompareMode.NON_EXTENSIBLE);
+					JSONArray jsonArray_response = JSONArray.parseArray(response.asString());
+					JSONArray jsonArray_baseline = JSONArray.parseArray(baseline_message);
+					// System.out.println("jsonArray_response.size():" +
+					// jsonArray_response.size());
+					for (int i_tmp = 0; i_tmp <= jsonArray_response.size(); i_tmp++) {
+						// System.out.println(i_tmp +
+						// "--------------------------------" +
+						// jsonArray_response.get(i_tmp));
+						// System.out.println(i_tmp +
+						// "--------------------------------" +
+						// jsonArray_baseline.get(i_tmp).toString());
+						JSONCompareResult result = JSONCompare.compareJSON(
+								StringUtil.removeSpaces(jsonArray_baseline.get(i_tmp).toString()),
+								StringUtil.removeSpaces(jsonArray_response.get(i_tmp).toString()),
+								JSONCompareMode.NON_EXTENSIBLE);
+						if (!result.passed()) {
+							DataWriter.writeData(comparsionSheet, result.getMessage(), ID, test_case);
+							// System.out.println("find--------------------------------1234"+result.getMessage()+"1111111111111");
+							// System.out.println(comparsionSheet.getSheetName()
+							// +
+							// "\t\t"+result + "\t\t" + ID+"\t\t"+test_case);
+							// DataWriter.writeData(resultSheet, "false", ID,
+							// test_case,
+							// failedcase+"");
+							DataWriter.writeData(resultSheet, "false", ID, test_case, 0);
+							// System.out.println(resultSheet.getSheetName() +
+							// "\t\tfalse\t\t" + ID+"\t\t"+test_case +"\t\t0");
+							// DataWriter.writeData(outputSheet);
+							failedcase++;
+							Assert.fail(result.getMessage());
 
-				if (!result.passed()) {
-					DataWriter.writeData(comparsionSheet, result.getMessage(), ID, test_case);
-					// System.out.println(comparsionSheet.getSheetName() +
-					// "\t\t"+result + "\t\t" + ID+"\t\t"+test_case);
-					// DataWriter.writeData(resultSheet, "false", ID, test_case,
-					// failedcase+"");
-					DataWriter.writeData(resultSheet, "false", ID, test_case, 0);
-					// System.out.println(resultSheet.getSheetName() +
-					// "\t\tfalse\t\t" + ID+"\t\t"+test_case +"\t\t0");
-					// DataWriter.writeData(outputSheet);
-					failedcase++;
-					Assert.fail(result.getMessage());
+						} else {
+							// DataWriter.writeData(resultSheet, "true", ID,
+							// test_case,
+							// successcase+"");
+							DataWriter.writeData(resultSheet, "true", ID, test_case, 0);
+							// successcase++;
+							// System.out.println(resultSheet.getSheetName() +
+							// "\t\ttrue"+"\t\t"+ ID+"\t\t"+test_case +
+							// "\t\t0");
+						}
+					}
 				} else {
-					// DataWriter.writeData(resultSheet, "true", ID, test_case,
-					// successcase+"");
-					DataWriter.writeData(resultSheet, "true", ID, test_case, 0);
-					// successcase++;
-					// System.out.println(resultSheet.getSheetName() +
-					// "\t\ttrue"+"\t\t"+ ID+"\t\t"+test_case + "\t\t0");
+
+					JSONCompareResult result = JSONCompare.compareJSON(StringUtil.removeSpaces(baseline_message),
+							StringUtil.removeSpaces(response.asString()), JSONCompareMode.NON_EXTENSIBLE);
+
+					if (!result.passed()) {
+						DataWriter.writeData(comparsionSheet, result.getMessage(), ID, test_case);
+						// System.out.println(comparsionSheet.getSheetName() +
+						// "\t\t"+result + "\t\t" + ID+"\t\t"+test_case);
+						// DataWriter.writeData(resultSheet, "false", ID,
+						// test_case,
+						// failedcase+"");
+						DataWriter.writeData(resultSheet, "false", ID, test_case, 0);
+						// System.out.println(resultSheet.getSheetName() +
+						// "\t\tfalse\t\t" + ID+"\t\t"+test_case +"\t\t0");
+						// DataWriter.writeData(outputSheet);
+						failedcase++;
+						Assert.fail(result.getMessage());
+					} else {
+						// DataWriter.writeData(resultSheet, "true", ID,
+						// test_case,
+						// successcase+"");
+						DataWriter.writeData(resultSheet, "true", ID, test_case, 0);
+						// successcase++;
+						// System.out.println(resultSheet.getSheetName() +
+						// "\t\ttrue"+"\t\t"+ ID+"\t\t"+test_case + "\t\t0");
+					}
 				}
 			} catch (JSONException e) {
 				DataWriter.writeData(comparsionSheet, "",
@@ -195,7 +336,9 @@ public class HTTPReqGenTest implements ITest {
 				// System.out.println(resultSheet.getSheetName() +
 				// "\t\ttrue"+"\t\t"+ ID+"\t\t"+test_case + "\t\t0");
 			} else {
-				DataWriter.writeData(comparsionSheet, baseline_message, response.statusLine(), ID, test_case);
+				DataWriter.writeData(comparsionSheet,
+						"baseline:" + baseline_message + " /r/n response.statusLine:" + response.statusLine(), ID,
+						test_case);
 				DataWriter.writeData(resultSheet, "false", ID, test_case, 0);
 				// System.out.println(resultSheet.getSheetName() +
 				// "\t\tfalse\t\t"+ ID + "\t\t0" );
