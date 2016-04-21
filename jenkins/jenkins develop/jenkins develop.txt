@@ -1,0 +1,18 @@
+http://my.oschina.net/songcser/blog/159170
+http://blog.163.com/wf_shunqiziran/blog/static/1763072092012393528338/
+http://my.oschina.net/fhck/blog/64639
+http://www.ibm.com/developerworks/cn/java/j-lo-jenkins-plugin/
+
+
+mvn -U hpi:create -settings=./setting.xml
+将生成项目导入eclipse
+
+cd uyundeploy
+mvn package
+
+生成可导入eclipse工程
+mvn clean eclipse:eclipse
+
+
+
+
