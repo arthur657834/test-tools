@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import javax.sound.midi.SysexMessage;
 
 import junit.framework.TestCase;
 
@@ -19,34 +23,42 @@ import com.alibaba.fastjson.JSONPObject;
 
 public class Propertyfromyaml {
 
-	public static JSONObject Propertyfromyaml(String DBType) throws FileNotFoundException {
-		// public static void main(String[] args) throws FileNotFoundException{
+	public static JSONObject propertyfromyaml(String filename, String filter) throws FileNotFoundException {
+
 		JSONObject jsonStrs = new JSONObject();
-		InputStream input = new FileInputStream(new File("test.yml"));
+
+		InputStream input = new FileInputStream(new File(filename));
 		Yaml yaml = new Yaml();
+
 		Map<String, Object> object = (Map<String, Object>) yaml.load(input);
 
-		System.out.println("object:" + object);
-		System.out.println("---------------------------");
 		for (Entry<String, Object> entry : object.entrySet()) {
-			System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+			String object_tmp;
+			// System.out.println("key= " + entry.getKey() + " and value= " +
+			// entry.getValue().toString());
+
+			String[] tmp = null;
+			String tmp_split = "},";
+
+			tmp = entry.getValue().toString().split(tmp_split);
+			for (int i = 0; i < tmp.length; i++) {
+
+				tmp[i] = tmp[i].replace(", ", ",").replace("=", "\":\"").replace(",", "\",\"").replace("{", "{\"")
+						.replace("}", "\"}").replace("\":\"{\"", "\":{\"").replace("}\"}]", "}}]").replace("},{", "},");
+			}
+			jsonStrs = (JSONObject) JSONObject
+					.parse("{\"" + entry.getKey() + "\":" + String.join(tmp_split, tmp) + "}");
+
+		}
+		JSONArray jsonStrs_tmp = (JSONArray) jsonStrs.get("DBtype");
+
+		for (int i = 0; i < jsonStrs_tmp.size(); i++) {
+
+			if (jsonStrs_tmp.get(i).toString().contains(filter)) {
+				jsonStrs = (JSONObject) jsonStrs_tmp.get(i);
+			}
 		}
 
-		// Set<String> entry= object.keySet();
-		// System.out.println("key:" + entry);
-
-		// Collection<Object> entry2= object.values();
-		// System.out.println("key:" + entry2);
-
-		if (object.containsKey(DBType)) {
-			System.out.println("DBType:" + object.get(DBType));
-			String jsonStrs_tmp = object.get(DBType).toString().replace(" ", "").replace("=", "\":\"")
-					.replace(",", "\",\"").replace("{", "{\"").replace("}", "\"}");
-			System.out.println("jsonStrs:" + jsonStrs_tmp);
-			jsonStrs = (JSONObject) JSONObject.parse(jsonStrs_tmp);
-			System.out.println("tmp:" + jsonStrs.get("user"));
-		}
-		return jsonStrs;
+		return jsonStrs.getJSONObject(filter);
 	}
-
 }

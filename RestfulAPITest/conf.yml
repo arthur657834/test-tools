@@ -1,0 +1,17 @@
+DBtype:
+  - mysql:
+      IP: 10.1.50.225
+      passwd: 123456
+      user: root
+      port: 3306
+      DB: boltdog
+      SqlCharacter: select
+      UrlSplit: '&'
+  - cassandra:
+      IP: 10.1.11.25
+      passwd: broadatest
+      user: uem
+      port: 9042
+      DB: demo
+      SqlCharacter: select
+      UrlSplit: '&'

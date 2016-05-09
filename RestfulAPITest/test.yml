@@ -3,11 +3,11 @@ DBtype:
   - cassandra
 
 mysql:
-  IP: 10.1.240.124
+  IP: 10.1.50.225
   passwd: 123456
   user: root
   port: 3306
-  DB: javademo
+  DB: boltdog
   SqlCharacter: select
   UrlSplit: '&'
 

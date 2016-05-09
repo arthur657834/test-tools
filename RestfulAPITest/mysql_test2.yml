@@ -1,0 +1,9 @@
+data:
+  sql: select create_time createTime,def_tags defTags,id,modify_time modifyTime,name, res_type_id,run_duration runDuration, run_status runStatus,ser_ip serIp,sys_tags sysTags from res_public limit 0,20
+  sql_complex: 
+    - sql: SELECT class_name className,id,name from res_type
+    - parameter: id,res_type_id
+    - name: resourceType
+
+total:
+  sql: select count(*) total from res_public

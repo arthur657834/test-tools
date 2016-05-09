@@ -2,6 +2,8 @@ package com.healthcloud.qa.utils;
 
 import java.util.Iterator;
 
+import org.json.JSONArray;
+
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -10,13 +12,17 @@ import com.datastax.driver.core.Session;
 public class Cassandra {
 
 	// authenticator
-	public String GetResultFromCassandra(String DBtype, String IP, String port, String DB, String user, String passwd,
-			String sql) {
+	public JSONArray GetResultFromCassandra(String DBtype, String IP, String port, String DB, String user,
+			String passwd, String sql) {
 
-		String s_tmp = "";
-
+		JSONArray s_tmp = null;
+		Cluster cluster;
 		// TODO Auto-generated method stub
-		Cluster cluster = Cluster.builder().addContactPoint(IP).withCredentials(user, passwd).build();
+		if (user.length() > 0 & passwd.length() > 0) {
+			cluster = Cluster.builder().addContactPoint(IP).withCredentials(user, passwd).build();
+		} else {
+			cluster = Cluster.builder().addContactPoint(IP).build();
+		}
 		Session session = cluster.connect(DB);
 
 		String cql = sql;
