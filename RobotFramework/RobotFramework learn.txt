@@ -1,0 +1,9 @@
+pip install robotframework  robotframework-ride robotframework-selenium2library robotframework-archivelibrary robotframework-SSHLibrary robotframework-ftplibrary pycrypto
+
+pip install --upgrade  --trusted-host wxpython.org --pre -f http://wxpython.org/Phoenix/snapshot-builds/ wxPython_Phoenix
+
+°²×°wxPython£º
+http://wxPython.org/download.php
+
+
+http://sourceforge.net/projects/wxpython/files/wxPython/2.8.12.1/
