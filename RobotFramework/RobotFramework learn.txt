@@ -8,7 +8,15 @@ http://wxPython.org/download.php
 
 http://sourceforge.net/projects/wxpython/files/wxPython/2.8.12.1/
 
-selenium
-requests
 
-robotframework-databaselibrary
+pip install robotframework-requests requests
+
+pip install robotframework-databaselibrary PyMySQL
+
+pip install collections2
+
+Library:
+Collections,RequestsLibrary,DatabaseLibrary
+
+
+
