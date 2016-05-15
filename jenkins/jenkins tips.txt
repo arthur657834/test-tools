@@ -1,9 +1,23 @@
 1.
-ʹ��slaveʱ���ܻᵼ��һЩ�����Ҳ���
-ע�������linux slave��ʹ����bashrc����profile���µ�
+使用slave时可能会导致一些命令找不到
+注意可能在linux slave上使用了bashrc而非profile导致的
 
-2.����jenkins
-���� http://xxxxxxxx:8080/restart 
+2.重启jenkins
+访问 http://xxxxxxxx:8080/restart 
 
-3.����б�
+3.插件列表
 https://wiki.jenkins-ci.org/display/JENKINS/Plugins
+
+BUILD_NUMBER， 唯一标识一次build，例如23；
+BUILD_ID，基本上等同于BUILD_NUMBER，但是是字符串，例如2011-11-15_16-06-21；
+JOB_NAME， job的名字，例如JavaHelloWorld；
+BUILD_TAG， 作用同BUILD_ID,BUILD_NUMBER,用来全局地唯一标识一此build，例如jenkins-JavaHelloWorld-23；
+EXECUTOR_NUMBER， 例如0；
+NODE_NAME，slave的名字，例如MyServer01；
+NODE_LABELS，slave的label，标识slave的用处，例如JavaHelloWorld MyServer01；
+JAVA_HOME， java的home目录，例如C:\Program Files (x86)\Java\jdk1.7.0_01；
+WORKSPACE，job的当前工作目录，例如c:\jenkins\workspace\JavaHelloWorld；
+HUDSON_URL = JENKINS_URL， jenkins的url，例如http://localhost:8000/ ；
+BUILD_URL，build的url 例如http://localhost:8000/job/JavaHelloWorld/23/；
+JOB_URL， job的url，例如http://localhost:8000/job/JavaHelloWorld/；
+SVN_REVISION，svn 的revison， 例如4；
