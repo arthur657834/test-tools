@@ -20,3 +20,8 @@ Collections,RequestsLibrary,DatabaseLibrary
 
 
 
+数据库查询结果乱码：
+解决办法1:
+database='boltdog', user='root',password='123456',host='10.1.50.225',port=3306,charset='utf8'
+解决办法2:
+使用原生python Evaluate decode
