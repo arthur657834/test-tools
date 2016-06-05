@@ -1,0 +1,38 @@
+pip install pyzmq locustio
+
+http://docs.locust.io/en/latest/index.html
+
+locust --host=http://127.0.0.1 --port=8089 -f C:\Users\lj\Desktop\locust_test.py
+
+如果locust file被放到了其他的地方，我们可以运行： 
+locust -f ../locust_files/my_locust_file.py --host=http://example.com 
+为了通过多进程来分布式地运行locust，我们应该在启动master进程的时候指定--master选项： 
+locust -f ../locust_files/my_locust_file.py --master --host=http://example.com 
+然后我们可以启动任意数量的slave进程： 
+locust -f ../locust_files/my_locust_file.py --slave --host=http://example.com 
+
+如果我们想要在多台机器上分布式的运行locust，在启动slave的时候，我们也必须指定master的host。 
+locust -f ../locust_files/my_locust_file.py --slave --master-host=192.168.0.100 --host=http://example.com
+
+weight标识执行比例，这里WebUserLocust的执行次数3倍于MobileUserLocust：
+
+class WebUserLocust(Locust):
+    weight = 3
+    ....
+
+class MobileUserLocust(Locust):
+    weight = 1
+    ....
+
+
+with client.get("/does_not_exist/", catch_response=True) as response:
+    if response.status_code == 404:
+        response.success()
+
+with client.get("/", catch_response=True) as response:
+    if response.content != "Success":
+        response.failure("Got wrong response")
+
+# Statistics for these requests will be grouped under: /blog/?id=[id]
+for i in range(10):
+    client.get("/blog?id=%i" % i, name="/blog?id=[id]")
