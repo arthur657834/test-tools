@@ -4,6 +4,9 @@ http://docs.locust.io/en/latest/index.html
 
 locust --host=http://127.0.0.1 --port=8089 -f C:\Users\lj\Desktop\locust_test.py
 
+-c 10 -r 10 --no-web
+直接执行不通过web
+
 如果locust file被放到了其他的地方，我们可以运行： 
 locust -f ../locust_files/my_locust_file.py --host=http://example.com 
 为了通过多进程来分布式地运行locust，我们应该在启动master进程的时候指定--master选项： 
