@@ -14,8 +14,8 @@ class UserBehavior(TaskSet):
     # 登录
     def login(self):
         data = {
-            "email": "libin@uyunsoft.cn",
-            "passwd": "c8352b591f0896dde5230deec5e48693",
+            "email": "xxxx@xxxx.cn",
+            "passwd": "xxxx",
         }
         response = self.client.post(
             'tenant/api/v1/user/login',
@@ -46,8 +46,8 @@ class UserBehavior(TaskSet):
         data = {
             "userId": self.userId,
             "realname": "李四",
-            "email": "libin@uyunsoft.cn",
-            "mobile": "15158827547",
+            "email": "xxxxx@xxxx.cn",
+            "mobile": "xxxxx",
         }
         self.client.post(
             'tenant/api/v1/user/update',
