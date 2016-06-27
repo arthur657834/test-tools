@@ -1,54 +1,63 @@
-http://tonl.iteye.com/blog/1948869
-
-对Eclipse的工程写单元测试：
-第一步：
-1. 一个工程有多个测试类，将测试类放到一个测试包utpkg下。
-2. 每一个测试类写好，都单独执行run as ->JUnit Test测一下。
- 
-第二步：
-1. 所有的测试类写好后，对工程右键->export->General->Ant Buildfiles=>next->选中工程名，默认的选项：name for and buildfile：build.xml；JUnit output directory：JUnit（不用手动创建，执行build.xml时会自动生成）.=>finish.
-2. 在工程下会生成一个build.xml的蚂蚁图标的文件。
- 
-第三步：
-1. 右击build.xml文件，->run as->3 ant build...
-2. 在Targets栏下选择要执行的targets. build[default]是默认的。其他可以自己根据需要，选择待执行的测试类。
-  注意：这些是有顺序的，可以自行调整顺序。
-3. 选好之后，Run.
- 
-第四步：
-查看Run结束的结果。
-1. 在工程下会生成一个junit的文件夹，下面有一系列的文件。
-
-@Test：
-表明该方法是一个测试方法
- 
-@BeforeClass 和 @AfterClass：
-测试用例初始化时执行 @BeforeClass方法，当所有测试执行完毕之后，执行@AfterClass进行收尾工作。标注、@BeforeClass 和 @AfterClass的方法必须是static的，因为方法将在类被装载的时候就被调用，那时候还没创建测试对象实例。
- 
-@Before： 
-使用了该元数据的方法在每个测试方法执行之前都要执行一次。
-@After： 
-使用了该元数据的方法在每个测试方法执行之后要执行一次。
- 
-@Test(expected=*.class) ：
-通过@Test元数据中的expected属性验证是否抛出期望的异常，expected属性的值是一个异常的类型，如果抛出了期望的异常，则测试通过，否则不通过。
- 
-@Test(timeout=xxx)：
-该元数据传入了一个时间（毫秒）给测试方法，如果测试方法在制定的时间之内没有运行完，则测试也失败。
- 
-@Ignore： 
-该元数据标记的测试方法在测试中会被忽略。同时可以为该标签传递一个String的参数，来表明为什么会忽略这个测试方法。比如：@lgnore("该方法还没有实现")，在执行的时候，仅会报告该方法没有实现，而不会运行测试方法。
-
-// is匹配符表明如果前面待测的object等于后面给出的object，则测试通过 
-assertThat( testedObj, is( object) ); 
- 
-// containsString匹配符表明如果测试的字符串包含指定的子字符串则测试通过
- assertThat( testedString, containsString( "developerWorks" ) );
- 
-// greaterThan匹配符表明如果所测试的数值testedNumber大于16.0则测试通过
- assertThat( testedNumber, greaterThan(16.0) ); 
- 
-// closeTo匹配符表明如果所测试的浮点型数testedDouble在20.0±0.5范围之内则测试通过 
-assertThat( testedDouble, closeTo( 20.0, 0.5 ) );
- 
-//hasItem匹配符表明被测的迭代对象含有元素element项则测试通过assertThat(iterableObject, hasItem (element));
+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

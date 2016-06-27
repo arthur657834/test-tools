@@ -1,67 +1,34 @@
-http://jmeter-plugins.org/downloads/all/
-jmeter 插件下载
-解压之后的jar放到\lib\ext下
-
-badboy录制脚本
-
-${__BeanShell(props.get("START.HMS"))}
-
-文件读取：
-	1.${__CSVRead(path,column)}
-	2.CSV Data Set Config
-
-集合点:
-	Synchronizing Timer
-	
-jdbc测试:
-	将jdbc包放到lib目录下
-	也可以参数化 select ? from dual
-
-分布式部署：
-	修改jmeter.properties 
-	remote_hosts=127.0.0.1=》remote_hosts=192.168.9.99:1099,192.168.9.130:1099 
-	运行jmeter-server.bat
-
-json数据处理：
-	正则："website":"(.+?)"
-		name = "(.+?)" value = "(.+?)"  
-		引用名称：MYREF
-		模板：$1$$2$
-		如下变量的值将会被设定：
-		MYREF_g0:name = "file"value = "readme.txt"
-		MYREF_g1:file
-		MYREF_g2:readme.txt
-		引用${MYREF_g1}
-	
-	jsonpath：$.perforList[*].website  =》多数值匹配 ${ljtest_1}  ${ljtest_matchNr}json长度
-	http://goessner.net/articles/JsonPath/index.html#e2	
-	
-	Beanshell：
-		import com.eclipsesource.json.*
-		
-		String jsonString =prev.getResponseDataAsString();
-		JsonObject family = JsonObject.readFrom(jsonString);
-		JsonArray members =family.get("members").asArray();
-		String firstName =members.get(2).asObject().get("firstName").asString();
-		vars.put("firstName_BSH",firstName);
-
-添加：
-	用户自定义变量: test(value:123),us
-	BeanShellSample: 
-		参数:${test}
-		script:
-			String x=${test}+"";
-			vars.put("us",x);
-使用:${us}
-
-Logic Controller:
-	If Controller:
-		如果是字符串一点要在参数前加引号，如：a."${foreach_city}"=="beijing"　b."${foreach_city}"!="beijing"
-	
-
-	
-
-	
-	
-	
-	
+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
+n3rLImjyWvI=
