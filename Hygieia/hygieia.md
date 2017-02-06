@@ -1,12 +1,23 @@
 安装nodejs
 cnpm install -g bower gulp
 
-非root用户执行
+非root用户执行:
 git clone https://github.com/capitalone/Hygieia.git
 cd Hygieia/
 mvn clean install package
 
-使用root
+root用户:
+cd Hygieia/
+docker pull java:openjdk-8-jdk
+mvn docker:build
+docker-compose up -d
+
+docker exec -it `docker ps -a | grep mongo | awk '{print $1}'` mongo admin --eval 'db.getSiblingDB("db").createUser({user: "db", pwd: "dbpass", roles: [{role: "readWrite", db: "dashboard"}]})'
+docker-compose restart
+
+docker port hygieia-ui
+http://10.1.50.250:8088/
+
 cd core 
 mvn clean install
 cd hygieia-jenkins-plugin
@@ -28,7 +39,6 @@ mkdir -p /opt/mongo /opt/hygieia/logs
 docker run -d -p 27017:27017 --name mongodb -v /opt/mongo:/data/db mongo:latest  mongod --smallfiles
 
 docker exec -it `docker ps -a | grep mongo | awk '{print $1}'` mongo admin --eval 'db.getSiblingDB("db").createUser({user: "db", pwd: "dbpass", roles: [{role: "readWrite", db: "dashboard"}]})'
-
 
 docker run -d --net=host capitaloneio/hygieia-ui
 
