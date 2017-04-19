@@ -25,3 +25,6 @@ Collections,RequestsLibrary,DatabaseLibrary
 database='boltdog', user='root',password='123456',host='10.1.50.225',port=3306,charset='utf8'
 解决办法2:
 使用原生python Evaluate decode
+
+截图：
+Library    Screenshot
