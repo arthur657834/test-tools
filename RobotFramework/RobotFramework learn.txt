@@ -28,3 +28,9 @@ database='boltdog', user='root',password='123456',host='10.1.50.225',port=3306,c
 
 截图：
 Library    Screenshot
+
+覆盖全局变量arthur
+pybot --variable arthur:321 ljtest.txt
+
+pybot -e logic *.txt(排除logic的tag用例)
+pybot -i logic *.txt(执行logic的tag用例)
