@@ -34,6 +34,9 @@ cd /home/ljtest/sonarqube-5.4/bin/linux-x86-64
 sh sonar.sh start
 
 http://10.1.240.124:9000/
+tip：
+最新版默认帐号admin/admin
+配置选项有点不一样，直接看配置文件就行
 
 wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.zip
 /home/ljtest/nexus-2.12.1-01/bin
@@ -46,7 +49,8 @@ http://10.1.240.124:8081/nexus/
 jenkins配置:
 SonarQube Plugin	
 JaCoCo plugin
-Sonargraph Plugin
+Sonargraph Plugin <==> SonarQube Scanner for Jenkins
+
 
 Analysis properties:
 sonar.projectKey=$JOB_NAME
