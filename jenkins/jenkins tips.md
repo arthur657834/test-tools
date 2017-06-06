@@ -21,3 +21,27 @@ HUDSON_URL = JENKINS_URL， jenkins的url，例如http://localhost:8000/ ；
 BUILD_URL，build的url 例如http://localhost:8000/job/JavaHelloWorld/23/；
 JOB_URL， job的url，例如http://localhost:8000/job/JavaHelloWorld/；
 SVN_REVISION，svn 的revison， 例如4；
+
+4.
+Parameterized Trigger Plugin:
+参数传递
+![第1个job配置](./step_1.jpg)
+![第2个job配置](./step_2.jpg)
+
+5.
+Environment Injector Plugin
+Inject environment variables to the build process
+
+6.
+thinbackup backup plugin
+备份插件
+
+thinBackup plugin可以自动备份全局的和job的指定配置文件（不包括archive和workspace）。
+backup plugin可以备份JENKINS_HOME，可以选择是否备份workspace、builds history、maven atifacts archives、fingerprints等。
+thinBackup plugin和backup plugin不同：
+bakup plugin只能手动触发备份，thinBackup plugin可以定期自动备份。
+bakup plugin可以备份JENKINS_HOME，可以选择哪些内容是否需要备份（如workspace、builds history等）， thinBackup plugin只备份最重要的信息（全局的和job的指定配置文件）
+
+
+
+
