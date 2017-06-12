@@ -31,6 +31,7 @@ Parameterized Trigger Plugin:
 5.
 Environment Injector Plugin
 Inject environment variables to the build process
+![jenkins环境配置](./Inject_environment_variables.png)
 
 6.
 thinbackup backup plugin
