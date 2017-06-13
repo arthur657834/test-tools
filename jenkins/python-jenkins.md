@@ -11,9 +11,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-jenkins_server_url='http://10.1.3.99:8080/jenkins'
+jenkins_server_url='http://10.1.1.1:8080/jenkins'
 user_id='admin'
-api_token='2ad0d620fbf6fbd2085d20b25b1388bf'
+api_token='2ad0d620fbf6fbd2085d20b25b1388xx'
 notify_job_name='DingNotify'
 server=jenkins.Jenkins(jenkins_server_url, username=user_id, password=api_token)
 server.get_job_info(notify_job_name)
