@@ -1,3 +1,5 @@
+http://python-jenkins.readthedocs.io/en/latest/api.html
+
 ```shell
 pip install python-jenkins
 ```
