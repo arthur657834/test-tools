@@ -21,6 +21,7 @@ server=jenkins.Jenkins(jenkins_server_url, username=user_id, password=api_token)
 server.get_job_info(notify_job_name)
 
 job_list=server.get_jobs()
+#job_list=server.get_jobs(view_name='ChatOps')
 for i in range(len(job_list)):
   print job_list[i]['name']
   if job_list[i]['name'] != notify_job_name:
