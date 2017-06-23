@@ -8,20 +8,6 @@
 3.插件列表
 https://wiki.jenkins-ci.org/display/JENKINS/Plugins
 
-BUILD_NUMBER， 唯一标识一次build，例如23；
-BUILD_ID，基本上等同于BUILD_NUMBER，但是是字符串，例如2011-11-15_16-06-21；
-JOB_NAME， job的名字，例如JavaHelloWorld；
-BUILD_TAG， 作用同BUILD_ID,BUILD_NUMBER,用来全局地唯一标识一此build，例如jenkins-JavaHelloWorld-23；
-EXECUTOR_NUMBER， 例如0；
-NODE_NAME，slave的名字，例如MyServer01；
-NODE_LABELS，slave的label，标识slave的用处，例如JavaHelloWorld MyServer01；
-JAVA_HOME， java的home目录，例如C:\Program Files (x86)\Java\jdk1.7.0_01；
-WORKSPACE，job的当前工作目录，例如c:\jenkins\workspace\JavaHelloWorld；
-HUDSON_URL = JENKINS_URL， jenkins的url，例如http://localhost:8000/ ；
-BUILD_URL，build的url 例如http://localhost:8000/job/JavaHelloWorld/23/；
-JOB_URL， job的url，例如http://localhost:8000/job/JavaHelloWorld/；
-SVN_REVISION，svn 的revison， 例如4；
-
 4.
 Parameterized Trigger Plugin:
 参数传递
@@ -34,15 +20,17 @@ Inject environment variables to the build process
 ![jenkins环境配置](./Inject_environment_variables.png)
 
 6.
-thinbackup backup plugin
-备份插件
+thinbackup backup plugin:备份插件
 
 thinBackup plugin可以自动备份全局的和job的指定配置文件（不包括archive和workspace）。
 backup plugin可以备份JENKINS_HOME，可以选择是否备份workspace、builds history、maven atifacts archives、fingerprints等。
 thinBackup plugin和backup plugin不同：
-bakup plugin只能手动触发备份，thinBackup plugin可以定期自动备份。
-bakup plugin可以备份JENKINS_HOME，可以选择哪些内容是否需要备份（如workspace、builds history等）， thinBackup plugin只备份最重要的信息（全局的和job的指定配置文件）
+backup plugin只能手动触发备份，thinBackup plugin可以定期自动备份。
+backup plugin可以备份JENKINS_HOME，可以选择哪些内容是否需要备份（如workspace、builds history等）， thinBackup plugin只备份最重要的信息（全局的和job的指定配置文件）
 
-
+7.
+Hudson Post build task:增加构建后的操作
+build timeout plugin:构建超时设置
+Build Timestamp Plugin:往console log中增加时间戳
 
 
