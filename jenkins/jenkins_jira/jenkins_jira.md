@@ -1,7 +1,7 @@
 安装jenkins插件:
  * JIRA plugin
  * JIRA Trigger Plugin
- * Jira Issue Updater
+ * Jira Issue Updater  插件仓库中版本有问题，最好自己去github下载编译一个
 
 http://jira.uyunsoft.cn/rest/api/2/
 
