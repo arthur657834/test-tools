@@ -1,3 +1,9 @@
+设置环境变量
+JMETER_HOME
+
+修改classpath
+%JMETER_HOME%\lib\ext\ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;%JMETER_HOME%\lib\logkit-2.0.jar;
+
 http://jmeter-plugins.org/downloads/all/
 jmeter 插件下载
 解压之后的jar放到\lib\ext下
