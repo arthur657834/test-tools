@@ -3,4 +3,4 @@
 
 重启tomcat
 
-系统设置开启允许用户注册
+系统设置 Configure Global Security ==> 启用项目安全开启允许用户注册
