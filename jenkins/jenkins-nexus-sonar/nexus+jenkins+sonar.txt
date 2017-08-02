@@ -50,7 +50,10 @@ jenkins配置:
 SonarQube Plugin	
 JaCoCo plugin
 Sonargraph Plugin <==> SonarQube Scanner for Jenkins
+系统管理–》Global Tool Configuration 
 
+sonar token生成
+菜单–》配置–》权限–》用户–》TOKENS–》Generate 生成token，将生成token添加到此处，完成添加。
 
 Analysis properties:
 sonar.projectKey=$JOB_NAME
