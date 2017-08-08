@@ -1,3 +1,5 @@
+新建maven工程
+
 ```java
 package com.dubbo.test;
 
@@ -106,3 +108,14 @@ pom.xml 添加
   <version>3.2</version>
 </dependency>
 ```
+
+mvn clean package
+
+将打出打jar放到D:\apache-jmeter\lib\ext下
+
+重新启动jmeter 即可使用
+
+![java](jmeter_java.png)
+
+
+
