@@ -64,6 +64,8 @@ Logic Controller:
 	If Controller:
 		如果是字符串一点要在参数前加引号，如：a."${foreach_city}"=="beijing"　b."${foreach_city}"!="beijing"
 	
+${__RandomString(3,abc,)}.txt
+${__Random(0,100,)}
 
 	
 

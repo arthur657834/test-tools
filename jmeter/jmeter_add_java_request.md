@@ -1,5 +1,10 @@
 新建maven工程
 
+public Arguments getDefaultParameters();设置可用参数及的默认值；
+public void setupTest(JavaSamplerContext arg0)：每个线程测试前执行一次，做一些初始化工作；
+public SampleResult runTest(JavaSamplerContext arg0)：开始测试，从arg0参数可以获得参数值；
+public void teardownTest(JavaSamplerContext arg0)：测试结束时调用；
+
 ```java
 package com.dubbo.test;
 
