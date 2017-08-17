@@ -1,4 +1,5 @@
-﻿wget http://apache.opencas.org/tomcat/tomcat-9/v9.0.0.M4/bin/apache-tomcat-9.0.0.M4.zip
+```
+wget http://apache.opencas.org/tomcat/tomcat-9/v9.0.0.M4/bin/apache-tomcat-9.0.0.M4.zip
 unzip apache-tomcat-9.0.0.M4.zip
 cd apache-tomcat-9.0.0.M4/webapps/
 cd apache-tomcat-9.0.0.M4/bin
@@ -72,3 +73,4 @@ sonar.scm.disabled=true
 
 以下配置没有用到
 sonar.java.libraries=lib,/home/soft/sonar-runner-2.4/lib
+```
