@@ -33,4 +33,7 @@ Hudson Post build task:增加构建后的操作
 build timeout plugin:构建超时设置
 Build Timestamp Plugin:往console log中增加时间戳
 
-
+8.
+Join plugin
+等下游job echo_2和echo_3完成之后才会触发echo_4
+![join_job](./join_job.png)
