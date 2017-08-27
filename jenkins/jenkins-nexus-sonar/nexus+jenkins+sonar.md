@@ -56,6 +56,9 @@ Sonargraph Plugin <==> SonarQube Scanner for Jenkins
 sonar token生成
 菜单–》配置–》权限–》用户–》TOKENS–》Generate 生成token，将生成token添加到此处，完成添加。
 ![sonar](sonar_token.png)
+
+https://docs.sonarqube.org/display/SONAR/Analysis+Parameters
+
 Analysis properties:
 sonar.projectKey=$JOB_NAME
 sonar.projectName=$JOB_NAME
