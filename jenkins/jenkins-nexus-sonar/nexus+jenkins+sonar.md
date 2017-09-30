@@ -34,7 +34,7 @@ sonar.jdbc.driverClassName:                com.mysql.jdbc.Driver
 cd /home/ljtest/sonarqube-5.4/bin/linux-x86-64
 sh sonar.sh start
 
-http://10.1.240admin
+http://10.1.240.124:9000
 tip：
 最新版默认帐号admin/admin
 配置选项有点不一样，直接看配置文件就行
