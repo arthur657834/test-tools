@@ -21,6 +21,8 @@ vi /etc/docker/daemon.json
 
 systemctl restart docker
 
+curl -X GET http://10.1.50.250:2376/images/json
+
 jenkins 安装docker plugin插件
 配置
 ![docker_plugin](./docker_plugin.png)
