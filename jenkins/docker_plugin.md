@@ -13,6 +13,7 @@ exit
 
 docker commit -m 'install java-1.8.0-openjdk openssh' -a 'Docker Newbee' 2a27e90453f0  centos7-jdk:ssh
 
+https://docs.docker.com/engine/reference/commandline/dockerd/ daemon 配置文件解析
 vi /etc/docker/daemon.json
 {
   "debug": true,
