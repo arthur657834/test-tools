@@ -23,6 +23,13 @@ systemctl restart docker
 
 curl -X GET http://10.1.50.250:2376/images/json
 
+export DOCKER_HOST="tcp://10.1.50.250:2376"
+docker ps
+
+or
+
+docker -H 10.1.50.250:2376 ps
+
 jenkins 安装docker plugin插件
 配置
 ![docker_plugin](./docker_plugin.png)
