@@ -48,7 +48,7 @@ http://10.1.240.124:8081/nexus/
 可以建用户实现权限管理
 
 jenkins配置:
-SonarQube Plugin	
+SonarQube Scanner for Jenkins
 JaCoCo plugin
 Sonargraph Plugin <==> SonarQube Scanner for Jenkins
 系统管理–》Global Tool Configuration 
