@@ -2,7 +2,7 @@
 使用slave时可能会导致一些命令找不到
 注意可能在linux slave上使用了bashrc而非profile导致的
 
-2.重启jenkins
+2. 重启jenkins
 访问 http://xxxxxxxx:8080/restart 
 
 3.插件列表
@@ -50,3 +50,8 @@ Multiple SCMs plugin
 该项目的下游项目正在构建时阻止该项目构建：
 使用自定义的工作空间：每个Jenkins任务都会有唯一一个工作空间目录，下载源代码，构建的整个过程都是在这个工作空间中
 显示名称：仅供Jenkins Web页面显示
+
+11. 远程参数化构建
+http://x.x.x.x:8080/jenkins/job/echo_1/buildWithParameters?token=ljtest123&ljtest=Value&ljtest2=true
+http://x.x.x.x:8080/jenkins/job/echo_1/build?token=ljtest123
+
