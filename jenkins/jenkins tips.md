@@ -1,3 +1,4 @@
+```
 1.
 使用slave时可能会导致一些命令找不到
 注意可能在linux slave上使用了bashrc而非profile导致的
@@ -54,4 +55,4 @@ Multiple SCMs plugin
 11. 远程参数化构建
 http://x.x.x.x:8080/jenkins/job/echo_1/buildWithParameters?token=ljtest123&ljtest=Value&ljtest2=true
 http://x.x.x.x:8080/jenkins/job/echo_1/build?token=ljtest123
-
+```
