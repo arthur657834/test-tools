@@ -31,11 +31,10 @@ or
 
 docker -H 10.1.50.250:2376 ps
 
-jenkins 安装docker plugin插件
-配置
-![docker_plugin](./docker_plugin.png)
-
 工程构建的时候选择lable
  
 agent也可以通过Kubernetes管理，有插件
 ```
+jenkins 安装docker plugin插件
+配置
+![docker_plugin](./docker_plugin.png)
