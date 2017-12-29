@@ -32,6 +32,7 @@ pipeline {
 }
 
 ```
+
 ex2:
 Jenkinsfile (Declarative Pipeline)
 ```
@@ -48,7 +49,7 @@ pipeline {
 ```
 
 ex3: 
-```groovy
+```
 #!/usr/bin/env groovy
 
 /*
