@@ -47,7 +47,7 @@ pipeline {
 }
 ```
 
-ex3: 
+ex3:  
 ```groovy
   #!/usr/bin/env groovy  
 
@@ -371,7 +371,6 @@ ex3:
   }  
 
   // vim: ft=groovy
-
 
 ```
 
