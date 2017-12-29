@@ -1,5 +1,5 @@
 
-https://jenkins.io/doc/book/blueocean/getting-started/
+https://jenkins.io/doc/book/blueocean/getting-started/ <br>
 https://jenkins.io/doc/book/pipeline/syntax/
 
 jenkins 安装 Blue Ocean插件
