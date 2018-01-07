@@ -92,4 +92,10 @@ Multiple SCMs plugin
 14. jenkins 维护
 disk uage插件: 相关选项在系统管理和系统配置
 
+15. 构建进阶插件
+Dependency Graph Viewer Plugin
+Lockable Resources plugin
+promoted builds plugin
+
+
 ```
