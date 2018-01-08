@@ -89,7 +89,7 @@ Multiple SCMs plugin
 13. Jenkins Multi-configuration Project
 ![Multi-configuration](./Multi-configuration.png)
 
-14. jenkins 维护
+14. jenkins 维护<br>
 disk uage插件: 相关选项在系统管理和系统配置
 
 15. 构建进阶插件
