@@ -92,7 +92,8 @@ Multiple SCMs plugin
 14. jenkins 维护<br>
 disk uage插件: 相关选项在系统管理和系统配置
 
-15. 构建进阶插件
+15. 构建进阶插件<br>
+OWASP Dependency-Check Plugin<br>
 Dependency Graph Viewer Plugin<br>
 yum -y install python2-pydot<br>
 Lockable Resources plugin<br>
