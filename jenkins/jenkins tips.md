@@ -94,6 +94,10 @@ disk uage插件: 相关选项在系统管理和系统配置
 
 15. 构建进阶插件
 Dependency Graph Viewer Plugin<br>
+yum -y install python2-pydot<br>
 Lockable Resources plugin<br>
 promoted builds plugin<br>
-
+Log Parser<br>
+Nested View Plugin<br>
+Job Configuration History Plugin<br>
+Deployment Sphere<br>
