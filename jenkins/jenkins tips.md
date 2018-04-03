@@ -105,3 +105,25 @@ Deployment Sphere<br>
 
 16.
 ![job_import](job_import.png)
+
+
+17.
+SLOCCount Plug-in
+```
+yum -y install sloccount cloc
+#sloccount --duplicates --wide --details ${WORKSPACE} > sloccount.sc
+cloc --by-file --xml --out=cloc.xml ${WORKSPACE}
+```
+
+18. 
+代码检测
+```
+Checkstyle Plug-in
+PMD Plug-in
+FindBugs Plug-in
+```
+
+19. 
+漏洞检测<br>
+OWASP Dependency-Check Plugin
+
