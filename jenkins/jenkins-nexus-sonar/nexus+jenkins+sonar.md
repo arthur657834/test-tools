@@ -77,3 +77,23 @@ sonar.scm.disabled=true
 以下配置没有用到
 sonar.java.libraries=lib,/home/soft/sonar-runner-2.4/lib
 ```
+
+### sonar集成ldap
+```
+# LDAP configuration
+# General Configuration
+sonar.security.realm=LDAP
+ldap.url=ldap://myserver.mycompany.com
+ldap.bindDn=my_bind_dn
+ldap.bindPassword=my_bind_password
+  
+# User Configuration
+ldap.user.baseDn=ou=Users,dc=mycompany,dc=com
+ldap.user.request=(&(objectClass=inetOrgPerson)(uid={login}))
+ldap.user.realNameAttribute=cn
+ldap.user.emailAttribute=mail
+ 
+# Group Configuration
+ldap.group.baseDn=ou=Groups,dc=sonarsource,dc=com
+ldap.group.request=(&(objectClass=posixGroup)(memberUid={uid}))
+```
