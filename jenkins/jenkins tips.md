@@ -139,12 +139,15 @@ GET http://localhost:8080/job/test/{build_number}/logText/progressiveHtml/api/js
 GET http://localhost:8080/job/test/6/api/json
 
 ### 新构建
->POST http://localhost:8080/job/{job_name}/build/api/json 
->返回信息中 Location: http://localhost:8080/queue/item/17/
+> POST http://localhost:8080/job/{job_name}/build/api/json <br>
+> 返回信息中 Location: http://localhost:8080/queue/item/17/
 
 ### 根据 QueueId 获取 QueueItem
 GET http://localhost:8080/queue/item/17/api/json
 
 ### 获取 JobXml
 GET http://localhost:8080/job/{job_name}/config.xml/api/json
+
+21. Pipeline-Utility-steps
+> 在pipeline的Step中直接使用它的API方法进行某些操作，例如查找文件，读取YAML/JSON/Properties文件、读取Maven工程POM文件等。这些方法有一个前提，任何文件都需要放在jenkins的workspace下，执行的job才能去找到文件
 
