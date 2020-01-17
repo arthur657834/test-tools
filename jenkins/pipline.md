@@ -245,3 +245,9 @@ step([$class: 'ArtifactArchiver', artifacts: 'pom.xml, src/'])
 
 在使用了parallel的console log里，并行的log都混在了一起，需要在job的pipeline steps页面查看按逻辑分割的更情况的log。
 ```
+
+ex9
+### 文件参数转文件
+library "jenkinsci-unstashParam-library"
+def execFile = unstashParam "execFile"
+![unstashParam](./unstashParam.png)
