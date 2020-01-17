@@ -127,3 +127,24 @@ FindBugs Plug-in
 漏洞检测<br>
 OWASP Dependency-Check Plugin
 
+20. jenkins Restful Api
+
+### 获取TXT日志
+GET http://localhost:8080/job/test/{build_number}/logText/progressiveText/api/json
+
+### 获取 Html 日志
+GET http://localhost:8080/job/test/{build_number}/logText/progressiveHtml/api/json
+
+### 获取 Build信息
+GET http://localhost:8080/job/test/6/api/json
+
+### 新构建
+>POST http://localhost:8080/job/{job_name}/build/api/json 
+>返回信息中 Location: http://localhost:8080/queue/item/17/
+
+### 根据 QueueId 获取 QueueItem
+GET http://localhost:8080/queue/item/17/api/json
+
+### 获取 JobXml
+GET http://localhost:8080/job/{job_name}/config.xml/api/json
+
