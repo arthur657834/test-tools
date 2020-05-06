@@ -153,9 +153,9 @@ GET http://localhost:8080/job/{job_name}/config.xml/api/json
 
 22. crumb
 ```shell
-SERVER="http://10.1.14.206:8080/jenkins"
+SERVER="http://10.1.14.xxx:8080/jenkins"
 # File where web session cookie is saved
 COOKIEJAR="$(mktemp)"
-CRUMB=$(curl -u "qacenter:Qa123456" --cookie-jar "$COOKIEJAR" "$SERVER/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)")
-curl -X POST -u "qacenter:Qa123456" --cookie "$COOKIEJAR" -H "$CRUMB" "$SERVER"/job/param-home-master/build
+CRUMB=$(curl -u "xxxx:xxxx" --cookie-jar "$COOKIEJAR" "$SERVER/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)")
+curl -X POST -u "xxxx:xxxx" --cookie "$COOKIEJAR" -H "$CRUMB" "$SERVER"/job/param-home-master/build
 ```
