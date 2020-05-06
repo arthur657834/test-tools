@@ -151,3 +151,11 @@ GET http://localhost:8080/job/{job_name}/config.xml/api/json
 21. Pipeline-Utility-steps
 > 在pipeline的Step中直接使用它的API方法进行某些操作，例如查找文件，读取YAML/JSON/Properties文件、读取Maven工程POM文件等。这些方法有一个前提，任何文件都需要放在jenkins的workspace下，执行的job才能去找到文件
 
+22. crumb
+```shell
+SERVER="http://10.1.14.206:8080/jenkins"
+# File where web session cookie is saved
+COOKIEJAR="$(mktemp)"
+CRUMB=$(curl -u "qacenter:Qa123456" --cookie-jar "$COOKIEJAR" "$SERVER/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)")
+curl -X POST -u "qacenter:Qa123456" --cookie "$COOKIEJAR" -H "$CRUMB" "$SERVER"/job/param-home-master/build
+```
